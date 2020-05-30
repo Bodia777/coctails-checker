@@ -1,0 +1,15 @@
+<aside>
+  <app-loader *ngIf="loaderChecker;else filterTemplate"></app-loader>
+  <ng-template #filterTemplate>
+    <div class="container-fluid">
+      <form action="">
+        <ul>
+          <li *ngFor="let item of filterArr">
+            <input type="checkbox" value="item">{{item}}
+          </li>
+        </ul>
+      </form>
+      <button>APPLY</button>
+    </div>
+  </ng-template>
+</aside>

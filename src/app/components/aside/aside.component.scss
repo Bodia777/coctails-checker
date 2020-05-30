@@ -1,0 +1,30 @@
+aside {
+  width: 16.3vw;
+  height: calc(100vh - 70px);
+  min-width: 180px;
+  border-right: 1px solid #D0D0D0;
+  padding: 10px 8%;
+
+  ul {
+    list-style-type: none;
+
+    li {
+      margin: 10px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  button {
+    width: 180px;
+    height: 39px;
+    left: 20px;
+    top: 380px;
+    background: #4E4E4E;
+    border-radius: 10px;
+    color: white
+  }
+}
