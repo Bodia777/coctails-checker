@@ -1,5 +1,5 @@
 import { DrinkCategory } from './drink.category';
 
-export class Drinks {
+export class DrinksCategoryList {
     drinks: [DrinkCategory];
 }

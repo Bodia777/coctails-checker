@@ -1,0 +1,32 @@
+.drinkContainer {
+    width: calc((100vw - 220px)/6);
+    min-width: 220px;
+    text-align: center;
+    padding: 0 35px;
+  .drink {
+    width: 150px;
+    height: 200px;
+    text-align: center;
+
+    .imgWrapper {
+      width: 150px;
+      height: 150px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .drinkName {
+      position: relative;
+      left: -34px;
+      width: 218px;
+      margin-top: 20px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}

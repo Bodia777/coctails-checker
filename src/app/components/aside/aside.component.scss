@@ -1,9 +1,10 @@
 aside {
-  width: 16.3vw;
+  position: fixed;
+  top: 70px;
   height: calc(100vh - 70px);
-  min-width: 180px;
+  width: 220px;
   border-right: 1px solid #D0D0D0;
-  padding: 10px 8%;
+  padding: 10px 1.3vw;
 
   ul {
     list-style-type: none;

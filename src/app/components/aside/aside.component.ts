@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ServerConnectionService } from 'src/app/services/server-connection.service';
-import { Drinks } from 'src/app/interfaces';
+import { DrinksCategoryList } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-aside',
@@ -25,7 +25,7 @@ export class AsideComponent implements OnInit, OnDestroy {
   private getFilterList(): void {
     this.subscriber = this.serverConnectionService.getFilterList()
     .subscribe(
-      (data: Drinks) => {
+      (data: DrinksCategoryList) => {
         data.drinks.forEach((element) => {
           this.filterArr.push(element.strCategory);
         });
