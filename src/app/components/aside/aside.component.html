@@ -2,14 +2,13 @@
   <app-loader *ngIf="loaderChecker;else filterTemplate"></app-loader>
   <ng-template #filterTemplate>
     <div class="container-fluid">
-      <form action="">
         <ul>
-          <li *ngFor="let item of filterArr">
-            <input type="checkbox" value="item"> {{item}}
+          <li *ngFor="let item of filterArr; index as i">
+            <input type="checkbox" [id]="item" name="item" [value]="item" [formControl]="categoriesFormArray.controls[i]" (change)="setItemValue(i, item)">
+            <label for="item"> {{item}}</label>
           </li>
         </ul>
-      </form>
-      <button>APPLY</button>
+      <button (click)="setCategoriesList()" >APPLY</button>
     </div>
   </ng-template>
 </aside>

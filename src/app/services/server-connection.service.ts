@@ -7,15 +7,37 @@ import { DrinksCategoryList, DrinksList } from '../interfaces';
   providedIn: 'root'
 })
 export class ServerConnectionService {
+  public categoriesOfDrinksArray = [];
+  public indexOfNewDrinkCategory: number;
   private url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-  private url2 = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary Drink';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  public getFilterList(): Observable<DrinksCategoryList> {
-    return this.http.get<DrinksCategoryList>(this.url);
+  public getFilterList(): Observable < DrinksCategoryList > {
+    return this.http.get < DrinksCategoryList > (this.url);
   }
-  public getCoctailsList(): Observable<DrinksList> {
-    return this.http.get<DrinksList>(this.url2);
+
+  public getCategoriesList(categoriesArray): void {
+    this.categoriesOfDrinksArray = categoriesArray.value.filter((element) => {
+        return element !== false;
+    });
+    if (this.categoriesOfDrinksArray.length) {
+        this.indexOfNewDrinkCategory = 0;
+    }
+  }
+
+  public getDrinksList(): Observable < DrinksList > {
+    const url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=' + this.categoriesOfDrinksArray[this.indexOfNewDrinkCategory];
+    return this.http.get < DrinksList > (url);
+  }
+
+  public changeIndexOfNewDrinkCategory() {
+    if (this.indexOfNewDrinkCategory < this.categoriesOfDrinksArray.length - 1) {
+      this.indexOfNewDrinkCategory ++;
+      return true;
+    } else {
+      return false;
+    }
+
   }
 }

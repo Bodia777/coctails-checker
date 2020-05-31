@@ -1,3 +1,13 @@
-<main>
-    <app-drink *ngFor="let item of coctailsArr" [drinkItem]="item"></app-drink>
+<main #mainContainer (scroll)="onScroll($event)">
+    <div class="itemCategoryTitle" *ngIf="!showCoctailsArrChecker;else templateCoctailsArr">
+        <h3>Choose the drink category from the left menu and apply it! </h3>
+    </div>
+    <ng-template #templateCoctailsArr>
+        <div *ngFor="let itemCategory of coctailsCategiriesArr;let i=index">
+            <div class="itemCategoryTitle"><h3>{{itemCategory}}</h3></div>
+            <div class="drinksItemsWrapper">
+                <app-drink *ngFor="let item of coctailsArr[i]" [drinkItem]="item"></app-drink>
+            </div>
+        </div>
+    </ng-template>
 </main>

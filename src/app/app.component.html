@@ -8,6 +8,6 @@
   <div class="headerIcon"></div>
 </header>
   <div class="wrapper">
-    <app-aside></app-aside>
-    <app-main></app-main>
+    <app-aside (approveDrinksListCheckerEmitter)="changeDrinksListChecker($event)"></app-aside>
+    <app-main (cancelDrinksListCheckerEmitter)="changeDrinksListChecker($event)" [newDrinkList]="drinksListChecker"></app-main>
   </div>

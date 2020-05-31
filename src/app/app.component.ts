@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title = 'coctails-checker';
+  public drinksListChecker = false;
+
+  constructor() { }
+
+  public changeDrinksListChecker(value: boolean): void {
+    this.drinksListChecker = value;
+  }
 }

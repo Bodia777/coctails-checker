@@ -11,9 +11,6 @@ export class DrinkComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.drinkItem);
-
-  }
+  ngOnInit(): void {}
 
 }

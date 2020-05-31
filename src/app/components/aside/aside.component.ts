@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
+
 import { ServerConnectionService } from 'src/app/services/server-connection.service';
 import { DrinksCategoryList } from 'src/app/interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-aside',
@@ -10,7 +13,9 @@ import { DrinksCategoryList } from 'src/app/interfaces';
 export class AsideComponent implements OnInit, OnDestroy {
   public loaderChecker = true;
   public filterArr = [];
-  private subscriber: any;
+  private subscriber: Subscription;
+  @Output() approveDrinksListCheckerEmitter = new EventEmitter();
+  categoriesFormArray = new FormArray([]);
 
   constructor(private serverConnectionService: ServerConnectionService) { }
 
@@ -22,6 +27,17 @@ export class AsideComponent implements OnInit, OnDestroy {
     this.subscriber.unsubscribe();
   }
 
+  public setItemValue(index, name): void {
+    if (this.categoriesFormArray.controls[index].value === true) {
+      this.categoriesFormArray.controls[index].setValue(name);
+    }
+  }
+
+  public setCategoriesList(): void {
+    this.serverConnectionService.getCategoriesList(this.categoriesFormArray);
+    this.approveDrinksListCheckerEmitter.emit(true);
+  }
+
   private getFilterList(): void {
     this.subscriber = this.serverConnectionService.getFilterList()
     .subscribe(
@@ -30,6 +46,10 @@ export class AsideComponent implements OnInit, OnDestroy {
           this.filterArr.push(element.strCategory);
         });
         this.loaderChecker = false;
+        this.filterArr.forEach((element) => {
+          element = new FormControl(element);
+          this.categoriesFormArray.push(element);
+        });
       },
       (error) => {
         console.log(error);
