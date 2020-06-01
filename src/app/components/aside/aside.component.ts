@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class AsideComponent implements OnInit, OnDestroy {
   public loaderChecker = true;
+  public phoneSizeChecker = false;
   public filterArr = [];
   private subscriber: Subscription;
   @Output() approveDrinksListCheckerEmitter = new EventEmitter();
@@ -21,6 +22,9 @@ export class AsideComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getFilterList();
+    if (globalThis.innerWidth <= 500) {
+      this.phoneSizeChecker = true;
+    }
   }
 
   ngOnDestroy(): void {

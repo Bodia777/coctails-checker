@@ -43,3 +43,11 @@ header {
     margin-top: 70px;
     width: 100%;
 }
+@media screen and (max-width: 400px) {
+  header{
+    background-color: #fff;
+    .headerTextWrapper {
+      margin: 12px 7px;
+    }
+  }
+}

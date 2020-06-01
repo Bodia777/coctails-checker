@@ -5,6 +5,7 @@ aside {
   width: 220px;
   border-right: 1px solid #D0D0D0;
   padding: 10px 1.3vw;
+  background-color: #fff;
 
   ul {
     list-style-type: none;
@@ -29,3 +30,31 @@ aside {
     color: white
   }
 }
+.smallScreenMenuButton{
+  font-family: seaweedScript;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 0.39em;
+  color: #FF8A00;
+  font-style: italic;
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 30%;
+  left: 17px;
+  width: 386px;
+  height: 40px;
+}
+
+ @media screen and (max-width: 500px) {
+  aside{
+    left: -185px;
+    z-index: 99999999;
+    transition-property: left;
+    transition-duration: .7s;
+    &:hover{
+      left: 0;
+    }  
+  }
+}
+
