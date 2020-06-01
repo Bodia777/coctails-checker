@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DrinksCategoryList, DrinksList } from '../interfaces';
 
 @Injectable({
@@ -14,7 +14,9 @@ export class ServerConnectionService {
   constructor(private http: HttpClient) {}
 
   public getFilterList(): Observable < DrinksCategoryList > {
-    return this.http.get < DrinksCategoryList > (this.url);
+    const headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
+    return this.http.get < DrinksCategoryList > (this.url, {headers});
   }
 
   public getCategoriesList(categoriesArray): void {
@@ -27,8 +29,10 @@ export class ServerConnectionService {
   }
 
   public getDrinksList(): Observable < DrinksList > {
+    const headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
     const url = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=' + this.categoriesOfDrinksArray[this.indexOfNewDrinkCategory];
-    return this.http.get < DrinksList > (url);
+    return this.http.get < DrinksList > (url, {headers});
   }
 
   public changeIndexOfNewDrinkCategory() {
